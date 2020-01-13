@@ -1,9 +1,7 @@
 import { Button, Grid, InputAdornment, TextField } from "@material-ui/core";
 import React, { Component } from 'react';
+import noCapslockButtonText from './styles/bpmInputButton.styles'
 
-const noCapslockButtonText = ({
-    textTransform: 'none'
-});
 
 class BpmInput extends Component {
     constructor(props) {
@@ -69,7 +67,6 @@ class BpmInput extends Component {
                         <TextField
                             InputProps={{
                                 startAdornment: <InputAdornment position="start">♩ = </InputAdornment>,
-                                //endAdornment: <InputAdornment position='end'>Beat Units per Minute</InputAdornment>
                             }}
                             id="username"
                             onChange={this.handleInput.bind(this)}

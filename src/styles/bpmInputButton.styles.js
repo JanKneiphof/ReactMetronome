@@ -1,6 +1,6 @@
-export default function useStyle() { ({
-    label: {
-        textTransform: 'none'
-    }
+const noCapslockButtonText = ({
+    textTransform: 'none'
+});
 
-});}
+export default noCapslockButtonText
+
