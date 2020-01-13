@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import Metronome from './Metronome';
 import Navbar from './Navbar';
 
