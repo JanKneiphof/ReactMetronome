@@ -1,6 +1,6 @@
 import React from 'react';
-import Metronome from './Metronome';
-import Navbar from './Navbar';
+import Metronome from './Components/Metronome';
+import Navbar from './Components/Navbar';
 
 function App() {
   return (

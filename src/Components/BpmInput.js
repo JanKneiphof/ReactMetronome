@@ -1,6 +1,6 @@
 import { Button, Grid, InputAdornment, TextField } from "@material-ui/core";
 import React, { Component } from 'react';
-import noCapslockButtonText from './styles/bpmInputButton.styles'
+import noCapslockButtonText from '../styles/bpmInputButton.styles'
 
 
 class BpmInput extends Component {

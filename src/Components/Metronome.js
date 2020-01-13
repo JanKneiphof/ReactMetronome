@@ -22,7 +22,7 @@ class Metronome extends Component {
     }
 
     updatePlayingLoop() {
-        if (this.state.isPlaying == true) {
+        if (this.state.isPlaying === true) {
             this.playLoop()
         }
     }
