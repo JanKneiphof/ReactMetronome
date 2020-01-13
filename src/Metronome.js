@@ -11,7 +11,8 @@ class Metronome extends Component {
             beatUnitsPerMinute: this.props.defaultBpm,
             subdivisionsPerBeat: this.props.defaultSubdivisionsPerBeat,
             beatUnit: this.props.defaultBeatUnit,
-            beatsPerMeasure: this.props.defaultBeatsPerMeasure
+            beatsPerMeasure: this.props.defaultBeatsPerMeasure,
+            isPlaying: false
         }
     }
 
@@ -20,9 +21,15 @@ class Metronome extends Component {
         this.midiSounds.setMasterVolume(0.5);
     }
 
+    updatePlayingLoop() {
+        if (this.state.isPlaying == true) {
+            this.playLoop()
+        }
+    }
+
     async updateBpm(number) {
         await this.setState({ beatUnitsPerMinute: number })
-        this.playLoop()
+        this.updatePlayingLoop()
     }
 
     async updateTimeSignature([beatsPerMeasure, beatUnit]) {
@@ -30,7 +37,7 @@ class Metronome extends Component {
             beatsPerMeasure: beatsPerMeasure,
             beatUnit: beatUnit
         })
-        this.playLoop()
+        this.updatePlayingLoop()
     }
 
     createBeatLoop(beatsPerMeasure, subdivisionsPerBeat) {
@@ -53,10 +60,12 @@ class Metronome extends Component {
     }
 
     playLoop() {
+        this.setState({isPlaying: true})
         var loop = this.createBeatLoop(this.state.beatsPerMeasure, this.state.subdivisionsPerBeat)
         this.midiSounds.startPlayLoop(loop, this.state.beatUnitsPerMinute, 1 / (this.state.beatUnit * this.state.subdivisionsPerBeat));
     }
     stopLoop() {
+        this.setState({isPlaying: false})
         this.midiSounds.stopPlayLoop()
     }
 
