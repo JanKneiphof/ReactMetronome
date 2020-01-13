@@ -77,30 +77,30 @@ class BpmInput extends Component {
                             placeholder="0"
                             margin="normal"
                             label="Enter BPM"
-                            variant="outlined"
+                            variant="standard"
                             autoFocus={true} />
                     </Grid>
                     <Grid item>
                         <Grid alignContent="center" justify="center" container spacing={1} direction="row">
                             <Grid item>
-                                <Button aria-label="+10" onClick={this.addBpm.bind(this, '+10')} variant="outlined">+10</Button>
+                                <Button aria-label="+10" onClick={this.addBpm.bind(this, '+10')} variant="contained">+10</Button>
                             </Grid>
                             <Grid item>
-                                <Button aria-label="x1.5" style={noCapslockButtonText} onClick={this.multiplyBpmBy.bind(this, '1.5')} variant="outlined">x1.5</Button>
+                                <Button aria-label="x1.5" style={noCapslockButtonText} onClick={this.multiplyBpmBy.bind(this, '1.5')} variant="contained">x1.5</Button>
                             </Grid>
                             <Grid item>
-                                <Button aria-label="x2" style={noCapslockButtonText} onClick={this.multiplyBpmBy.bind(this, '2')} variant="outlined" >x2.0</Button>
+                                <Button aria-label="x2" style={noCapslockButtonText} onClick={this.multiplyBpmBy.bind(this, '2')} variant="contained" >x2.0</Button>
                             </Grid>
                         </Grid>
                         <Grid justify="center" container alignContent="center" spacing={1} direction="row">
                             <Grid item>
-                                <Button aria-label="-10" onClick={this.addBpm.bind(this, '-10')} variant="outlined">-10</Button>
+                                <Button aria-label="-10" onClick={this.addBpm.bind(this, '-10')} variant="contained">-10</Button>
                             </Grid>
                             <Grid item>
-                                <Button aria-label="÷1.5" onClick={this.multiplyBpmBy.bind(this, '0.75')} variant="outlined">÷1.5</Button>
+                                <Button aria-label="÷1.5" onClick={this.multiplyBpmBy.bind(this, '0.75')} variant="contained">÷1.5</Button>
                             </Grid>
                             <Grid item>
-                                <Button aria-label="÷2" onClick={this.multiplyBpmBy.bind(this, '0.5')} variant="outlined">÷2</Button>
+                                <Button aria-label="÷2" onClick={this.multiplyBpmBy.bind(this, '0.5')} variant="contained">÷2</Button>
                             </Grid>
                         </Grid>
                     </Grid>
