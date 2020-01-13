@@ -35,7 +35,7 @@ class TimeSignatureInput extends Component {
 
     render() {
         return (<div style={{ padding: 1 }}>
-            <Grid container spacing={1} justify="center" direction="column">
+            <Grid container spacing={1} alignItems="center" justify="center" direction="column">
                 <Grid item>
                     <TextField variant="standard" value={this.state.beatsPerMeasure} onChange={this.updateBeatsPerMeasure.bind(this)} label="Beats per Measure"></TextField>
                 </Grid>

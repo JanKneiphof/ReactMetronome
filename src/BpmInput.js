@@ -78,7 +78,7 @@ class BpmInput extends Component {
                             autoFocus={true} />
                     </Grid>
                     <Grid item>
-                        <Grid alignContent="center" justify="center" container spacing={1} direction="row">
+                        <Grid container alignItems="center" justify="center" spacing={1} direction="row">
                             <Grid item>
                                 <Button aria-label="+10" onClick={this.addBpm.bind(this, '+10')} variant="contained">+10</Button>
                             </Grid>
@@ -89,7 +89,7 @@ class BpmInput extends Component {
                                 <Button aria-label="x2" style={noCapslockButtonText} onClick={this.multiplyBpmBy.bind(this, '2')} variant="contained" >x2.0</Button>
                             </Grid>
                         </Grid>
-                        <Grid justify="center" container alignContent="center" spacing={1} direction="row">
+                        <Grid container justify="center" alignItems="center" spacing={1} direction="row">
                             <Grid item>
                                 <Button aria-label="-10" onClick={this.addBpm.bind(this, '-10')} variant="contained">-10</Button>
                             </Grid>

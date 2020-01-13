@@ -60,19 +60,19 @@ class Metronome extends Component {
     }
 
     playLoop() {
-        this.setState({isPlaying: true})
+        this.setState({ isPlaying: true })
         var loop = this.createBeatLoop(this.state.beatsPerMeasure, this.state.subdivisionsPerBeat)
         this.midiSounds.startPlayLoop(loop, this.state.beatUnitsPerMinute, 1 / (this.state.beatUnit * this.state.subdivisionsPerBeat));
     }
     stopLoop() {
-        this.setState({isPlaying: false})
+        this.setState({ isPlaying: false })
         this.midiSounds.stopPlayLoop()
     }
 
     render() {
         return (
             <div style={{ padding: 20 }}> {/*This is the recommended Workaround if you want to use the spacing prop in a Grid container, see: https://material-ui.com/components/grid/ */}
-                <Grid container spacing={2} justify="center" direction="column">
+                <Grid container spacing={2} alignItems="center" justify="center" direction="column">
                     <Grid item>
                         <BpmInput defaultBpm={this.state.beatUnitsPerMinute} updateBpm={this.updateBpm.bind(this)}></BpmInput>
                     </Grid>
@@ -89,7 +89,9 @@ class Metronome extends Component {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <MIDISounds ref={(ref) => (this.midiSounds = ref)} appElementName="root" drums={[200, 205, 210]}></MIDISounds>
+                    <Grid item>
+                        <MIDISounds ref={(ref) => (this.midiSounds = ref)} appElementName="root" drums={[200, 205, 210]}></MIDISounds>
+                    </Grid>
                 </Grid>
             </div>
         )
