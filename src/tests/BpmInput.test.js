@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import BpmInput from '../BpmInput';
+import BpmInput from '../Components/BpmInput';
 import { act } from 'react-dom/test-utils'
 import myUserEvent from "./myUserTesting"
 import { getByLabelText } from '@testing-library/react'
