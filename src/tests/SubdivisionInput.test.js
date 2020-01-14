@@ -14,9 +14,9 @@ afterEach(() => {
 });
 
 describe("SubdivisionInput", () => {
-    test("renders", () => {
+    test("matches Snapshot", () => {
         act(() => {
-            ReactDOM.render(<SubdivisionInput></SubdivisionInput>, container)
+            ReactDOM.render(<SubdivisionInput changeSubdivision={() => {}} numberOfSubdivisions="4"></SubdivisionInput>, container)
         });
         expect(container.firstChild).toMatchSnapshot()
     })
