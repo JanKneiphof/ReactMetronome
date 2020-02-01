@@ -61,6 +61,13 @@ class BpmInput extends Component {
             }
         }
     }
+
+    changeTempoStyle(event) {
+        let style = event.target.value
+        if(style ==="Quarter" || style ==="BPM")
+            this.props.changeTempoStyle(style)
+    }
+
     handleInput(inputEvent) {
         const number = inputEvent.target.value
         if (this.isPositiveInteger(number)) {
@@ -78,10 +85,10 @@ class BpmInput extends Component {
                     <Card variant="outlined">
                         <Typography variant="caption" style={{ margin: 10 }}>Tempo</Typography>
                         <Grid container spacing={1} alignItems="center" justify="center" direction="row">
-                            <Grid item style={{margin: 10}}>
-                                <RadioGroup aria-label="Tempostyle" name="Tempostyle" value={this.props.tempoStyle}>
+                            <Grid item style={{ margin: 10 }}>
+                                <RadioGroup aria-label="Tempostyle" name="Tempostyle" value={this.props.tempoStyle} onChange={this.changeTempoStyle.bind(this)}>
                                     <FormControlLabel value="Quarter" control={<Radio />} label="Quarter Notes per Minute" />
-                                    <FormControlLabel value="Beats" control={<Radio />} label="Beats per Minute" />
+                                    <FormControlLabel value="BPM" control={<Radio />} label="Beats per Minute" />
                                 </RadioGroup>
                             </Grid>
                             <Grid item>
