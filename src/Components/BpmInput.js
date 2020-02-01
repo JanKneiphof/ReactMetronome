@@ -1,4 +1,4 @@
-import { Button, Grid, InputAdornment, TextField, Card, Typography } from "@material-ui/core";
+import { Button, Grid, InputAdornment, TextField, Card, Typography, RadioGroup, FormControlLabel, Radio } from "@material-ui/core";
 import React, { Component } from 'react';
 import noCapslockButtonText from '../styles/bpmInputButton.styles'
 
@@ -66,6 +66,12 @@ class BpmInput extends Component {
                     <Card variant="outlined">
                         <Typography variant="caption" style={{ margin: 10 }}>Tempo</Typography>
                         <Grid container spacing={1} alignItems="center" justify="center" direction="row">
+                            <Grid item style={{margin: 10}}>
+                                <RadioGroup aria-label="Tempostyle" name="Tempostyle" value={this.props.tempoStyle}>
+                                    <FormControlLabel value="Quarter" control={<Radio />} label="Quarter Notes per Minute" />
+                                    <FormControlLabel value="Beats" control={<Radio />} label="Beats per Minute" />
+                                </RadioGroup>
+                            </Grid>
                             <Grid item>
                                 <TextField
                                     InputProps={{
@@ -77,11 +83,11 @@ class BpmInput extends Component {
                                     value={this.state.value}
                                     placeholder="0"
                                     margin="normal"
-                                    label="Enter BPM"
+                                    label="Enter Tempo"
                                     variant="standard"
                                     autoFocus={true} />
                             </Grid>
-                            <Grid item style={{margin: 10}}>
+                            <Grid item style={{ margin: 10 }}>
                                 <Grid container alignItems="center" justify="center" spacing={1} direction="row">
                                     <Grid item>
                                         <Button aria-label="+10" onClick={this.addBpm.bind(this, '+10')} variant="contained">+10</Button>
