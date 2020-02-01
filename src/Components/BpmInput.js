@@ -49,6 +49,18 @@ class BpmInput extends Component {
         }
     }
 
+    createAdornment() {
+        if (this.props.tempoStyle === "Quarter") {
+            return {
+                startAdornment: <InputAdornment position="start">♩ = </InputAdornment>,
+            }
+        }
+        else { 
+            return {
+                endAdornment: <InputAdornment position="end">BPM </InputAdornment>,
+            }
+        }
+    }
     handleInput(inputEvent) {
         const number = inputEvent.target.value
         if (this.isPositiveInteger(number)) {
@@ -74,9 +86,7 @@ class BpmInput extends Component {
                             </Grid>
                             <Grid item>
                                 <TextField
-                                    InputProps={{
-                                        startAdornment: <InputAdornment position="start">♩ = </InputAdornment>,
-                                    }}
+                                    InputProps={this.createAdornment()}
                                     style={{ margin: 10 }}
                                     id="username"
                                     onChange={this.handleInput.bind(this)}
