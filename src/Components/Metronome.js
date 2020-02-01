@@ -3,6 +3,7 @@ import MIDISounds from 'midi-sounds-react';
 import React, { Component } from "react";
 import BpmInput from "./BpmInput";
 import TimeSignatureInput from "./TimeSignatureInput";
+import SubdivisionInput from "./SubdivisionInput";
 
 class Metronome extends Component {
     constructor(props) {
@@ -12,7 +13,8 @@ class Metronome extends Component {
             subdivisionsPerBeat: this.props.defaultSubdivisionsPerBeat,
             beatUnit: this.props.defaultBeatUnit,
             beatsPerMeasure: this.props.defaultBeatsPerMeasure,
-            isPlaying: false
+            isPlaying: false,
+            beatAccentuation: this.props.defaultBeatAccentuation
         }
     }
 
@@ -33,30 +35,51 @@ class Metronome extends Component {
     }
 
     async updateTimeSignature([beatsPerMeasure, beatUnit]) {
+        let updatedAccents = new Map(this.state.beatAccentuation)
+        for (let index = this.state.beatsPerMeasure; index < beatsPerMeasure; index++) {
+            updatedAccents.set(parseInt(index), 1)
+        }
         await this.setState({
             beatsPerMeasure: beatsPerMeasure,
-            beatUnit: beatUnit
+            beatUnit: beatUnit,
+            beatAccentuation: updatedAccents
         })
         this.updatePlayingLoop()
     }
 
     createBeatLoop(beatsPerMeasure, subdivisionsPerBeat) {
-        const strongBeat = [[205], []];
-        const weakBeat = [[210], []];
         const firstBeat = [[200], []];
+        const weakBeat = [[210], []];
+        const strongBeat = [[205], []];
+        const muteBeat = [[], []]
         var beatLoop = [];
 
-        beatLoop[0] = firstBeat;
-        for (var tick = 1; tick < (beatsPerMeasure * subdivisionsPerBeat); tick++) {
-            if (tick % subdivisionsPerBeat === 0) {
-                beatLoop[tick] = strongBeat;
-            }
-            else {
-                beatLoop[tick] = weakBeat;
+        for (let tick = 0; tick < (beatsPerMeasure * subdivisionsPerBeat); tick++) {
+            let accent = this.state.beatAccentuation.get(tick)
+            switch (accent) {
+                case 1: beatLoop[tick] = weakBeat;
+                    break;
+                case 2: beatLoop[tick] = strongBeat;
+                    break;
+                case 3: beatLoop[tick] = firstBeat;
+                    break;
+                case 0: beatLoop[tick] = muteBeat;
+                    break;
+                default: beatLoop[tick] = muteBeat;
             }
         }
         return beatLoop;
 
+    }
+
+    async changeAccentuation(index) {
+        let currentAccent = this.state.beatAccentuation.get(index - 1) || 0
+        let updatedAccents = new Map(this.state.beatAccentuation).set(index - 1, ((currentAccent + 1) % 4))
+        await this.setState({
+            beatAccentuation: updatedAccents
+        })
+
+        this.updatePlayingLoop()
     }
 
     playLoop() {
@@ -88,6 +111,9 @@ class Metronome extends Component {
                                 <Button variant="contained" onClick={this.stopLoop.bind(this)}>Stop sound</Button>
                             </Grid>
                         </Grid>
+                    </Grid>
+                    <Grid item>
+                        <SubdivisionInput changeSubdivision={this.changeAccentuation.bind(this)} beatAccentuation={this.state.beatAccentuation} numberOfSubdivisions={this.state.beatsPerMeasure}></SubdivisionInput>
                     </Grid>
                     <Grid item>
                         <MIDISounds ref={(ref) => (this.midiSounds = ref)} appElementName="root" drums={[200, 205, 210]}></MIDISounds>
