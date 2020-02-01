@@ -1,3 +1,195 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SubdivisionInput renders 1`] = `<div />`;
+exports[`SubdivisionInput matches Snapshot 1`] = `
+<div
+  class="MuiGrid-root MuiGrid-container"
+>
+  <div
+    class="MuiGrid-root MuiGrid-item"
+  >
+    <div
+      class="MuiPaper-root MuiCard-root MuiPaper-outlined MuiPaper-rounded"
+    >
+      <span
+        class="MuiTypography-root MuiTypography-caption"
+        style="margin: 10px;"
+      >
+        Beat Accents
+      </span>
+      <div
+        class="MuiGrid-root MuiGrid-container"
+        style="margin: 10px;"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column MuiGrid-align-items-xs-center"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1"
+              >
+                ███
+              </p>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item"
+            >
+              <div
+                class="MuiButtonGroup-root"
+                role="group"
+              >
+                <button
+                  aria-label="Subdivision 1"
+                  class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined MuiButton-outlinedSizeSmall MuiButton-sizeSmall"
+                  tabindex="0"
+                  type="button"
+                  value="1"
+                >
+                  <span
+                    class="MuiButton-label"
+                  >
+                    1
+                  </span>
+                  <span
+                    class="MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column MuiGrid-align-items-xs-center"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1"
+              >
+                █
+              </p>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item"
+            >
+              <div
+                class="MuiButtonGroup-root"
+                role="group"
+              >
+                <button
+                  aria-label="Subdivision 2"
+                  class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined MuiButton-outlinedSizeSmall MuiButton-sizeSmall"
+                  tabindex="0"
+                  type="button"
+                  value="2"
+                >
+                  <span
+                    class="MuiButton-label"
+                  >
+                    2
+                  </span>
+                  <span
+                    class="MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column MuiGrid-align-items-xs-center"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1"
+              >
+                █
+              </p>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item"
+            >
+              <div
+                class="MuiButtonGroup-root"
+                role="group"
+              >
+                <button
+                  aria-label="Subdivision 3"
+                  class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined MuiButton-outlinedSizeSmall MuiButton-sizeSmall"
+                  tabindex="0"
+                  type="button"
+                  value="3"
+                >
+                  <span
+                    class="MuiButton-label"
+                  >
+                    3
+                  </span>
+                  <span
+                    class="MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column MuiGrid-align-items-xs-center"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1"
+              >
+                █
+              </p>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item"
+            >
+              <div
+                class="MuiButtonGroup-root"
+                role="group"
+              >
+                <button
+                  aria-label="Subdivision 4"
+                  class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined MuiButton-outlinedSizeSmall MuiButton-sizeSmall"
+                  tabindex="0"
+                  type="button"
+                  value="4"
+                >
+                  <span
+                    class="MuiButton-label"
+                  >
+                    4
+                  </span>
+                  <span
+                    class="MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
