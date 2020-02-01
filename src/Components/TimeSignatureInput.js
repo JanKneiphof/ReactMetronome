@@ -1,5 +1,5 @@
+import { Grid, TextField, Card, Typography } from "@material-ui/core";
 import React, { Component } from "react";
-import { TextField, Grid } from "@material-ui/core"
 
 class TimeSignatureInput extends Component {
     constructor(props) {
@@ -34,16 +34,21 @@ class TimeSignatureInput extends Component {
     }
 
     render() {
-        return (<div style={{ padding: 1 }}>
-            <Grid container spacing={1} alignItems="center" justify="center" direction="column">
+        return (<Grid container style={{ padding: 1 }}>
+            <Card variant="outlined">
                 <Grid item>
-                    <TextField variant="standard" value={this.state.beatsPerMeasure} onChange={this.updateBeatsPerMeasure.bind(this)} label="Beats per Measure"></TextField>
+                    <Typography style={{ margin: 10 }} variant="caption">Time Signature</Typography>
                 </Grid>
-                <Grid item>
-                    <TextField variant="standard" value={this.state.beatUnit} onChange={this.updateBeatUnit.bind(this)} label="Beat Unit"></TextField>
+                <Grid spacing={1} alignItems="center" justify="center" direction="column">
+                    <Grid item style={{ margin: 10 }}>
+                        <TextField variant="standard" value={this.state.beatsPerMeasure} onChange={this.updateBeatsPerMeasure.bind(this)} label="Beats per Measure"></TextField>
+                    </Grid>
+                    <Grid item style={{ margin: 10 }}>
+                        <TextField variant="standard" value={this.state.beatUnit} onChange={this.updateBeatUnit.bind(this)} label="Beat Unit"></TextField>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </div>
+            </Card>
+        </Grid>
         )
     };
 }
