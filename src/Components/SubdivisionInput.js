@@ -1,9 +1,60 @@
-import React from 'react'
-import { Component } from "react";
+import { Button, ButtonGroup, Card, Grid, Typography } from '@material-ui/core';
+import React, { Component } from 'react';
+
 
 class SubdivisionInput extends Component {
-    render()  {
-        return(<div></div>)
+
+    handleClick(index) {
+        this.props.changeSubdivision(index)
+    }
+
+    createButtonGroups(size) {
+        let buttons = []
+
+        for (let index = 1; index <= size; index++) {
+            let accentString = "█".repeat(this.props.beatAccentuation.get(index - 1))
+            if (accentString.length === 0) {
+                accentString = "mute"
+            }
+            buttons.push(
+                <Grid key={index} item>
+                    <Grid container alignItems="center" direction="column">
+                        <Grid item>
+                            <Typography>{accentString}</Typography>
+                        </Grid>
+                        <Grid item>
+                            <ButtonGroup
+                                key={"upTo" + index}
+                                size="small"
+                            >
+                                <Button
+                                    size="small"
+                                    onClick={this.props.changeSubdivision.bind(this, index)}
+                                    variant="outlined"
+                                    value={index}
+                                    aria-label={"Subdivision " + index}
+                                >
+                                    {index}
+                                </Button>
+                            </ButtonGroup>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            )
+
+        }
+        return (<Grid container  style={{margin: 10}} direction="row">{buttons}</Grid>)
+    }
+
+    render() {
+        return (<Grid container>
+            <Grid item>
+                <Card variant="outlined">
+                    <Typography variant="caption" style={{margin: 10}}>Beat Accents</Typography>
+                    {this.createButtonGroups(this.props.numberOfSubdivisions)}
+                </Card>
+            </Grid>
+        </Grid>)
     }
 }
 
