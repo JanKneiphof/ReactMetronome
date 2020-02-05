@@ -108,7 +108,7 @@ class Metronome extends Component {
             <div style={{ padding: 20 }}> {/*This is the recommended Workaround if you want to use the spacing prop in a Grid container, see: https://material-ui.com/components/grid/ */}
                 <Grid container spacing={2} alignItems="center" justify="center" direction="column">
                     <Grid item>
-                        <BpmInput defaultBpm={this.state.beatUnitsPerMinute} changeTempoStyle={this.changeTempoStyle.bind(this)} updateBpm={this.updateBpm.bind(this)} tempoStyle={this.state.tempoStyle}></BpmInput>
+                        <BpmInput defaultBpm={this.state.beatUnitsPerMinute} changeTempoStyle={this.changeTempoStyle.bind(this)} updateBpm={this.updateBpm.bind(this)} currentBpm={this.state.beatUnitsPerMinute} tempoStyle={this.state.tempoStyle}></BpmInput>
                     </Grid>
                     <Grid item >
                         <TimeSignatureInput defaultTimeSignature={[this.state.beatsPerMeasure, this.state.beatUnit]} updateTimeSignature={this.updateTimeSignature.bind(this)}></TimeSignatureInput>
