@@ -91,7 +91,12 @@ class Metronome extends Component {
     playLoop() {
         this.setState({ isPlaying: true })
         var loop = this.createBeatLoop(this.state.beatsPerMeasure, this.state.subdivisionsPerBeat)
+        if (this.state.tempoStyle === "Quarter") {
         this.midiSounds.startPlayLoop(loop, this.state.beatUnitsPerMinute, 1 / (this.state.beatUnit * this.state.subdivisionsPerBeat));
+    }
+        else {
+            this.midiSounds.startPlayLoop(loop, this.state.beatUnitsPerMinute, 1 / (4 * this.state.subdivisionsPerBeat));
+        }
     }
     stopLoop() {
         this.setState({ isPlaying: false })
