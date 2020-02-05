@@ -21,7 +21,7 @@ class Metronome extends Component {
 
     componentDidMount() {
         this.midiSounds.setEchoLevel(0);
-        this.midiSounds.setMasterVolume(0.5);
+        this.midiSounds.setMasterVolume(1.0);
     }
 
     updatePlayingLoop() {
@@ -31,7 +31,7 @@ class Metronome extends Component {
     }
 
     async changeTempoStyle(style) {
-        await this.setState({ tempoStyle: style})
+        await this.setState({ tempoStyle: style })
         this.updatePlayingLoop()
     }
 
@@ -92,8 +92,8 @@ class Metronome extends Component {
         this.setState({ isPlaying: true })
         var loop = this.createBeatLoop(this.state.beatsPerMeasure, this.state.subdivisionsPerBeat)
         if (this.state.tempoStyle === "Quarter") {
-        this.midiSounds.startPlayLoop(loop, this.state.beatUnitsPerMinute, 1 / (this.state.beatUnit * this.state.subdivisionsPerBeat));
-    }
+            this.midiSounds.startPlayLoop(loop, this.state.beatUnitsPerMinute, 1 / (this.state.beatUnit * this.state.subdivisionsPerBeat));
+        }
         else {
             this.midiSounds.startPlayLoop(loop, this.state.beatUnitsPerMinute, 1 / (4 * this.state.subdivisionsPerBeat));
         }
