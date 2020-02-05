@@ -1,4 +1,4 @@
-import { Button, Grid, InputAdornment, TextField, Card, Typography } from "@material-ui/core";
+import { Button, Grid, InputAdornment, TextField, Card, Typography, RadioGroup, FormControlLabel, Radio } from "@material-ui/core";
 import React, { Component } from 'react';
 import noCapslockButtonText from '../styles/bpmInputButton.styles'
 
@@ -49,6 +49,25 @@ class BpmInput extends Component {
         }
     }
 
+    createAdornment() {
+        if (this.props.tempoStyle === "Quarter") {
+            return {
+                startAdornment: <InputAdornment position="start">♩ = </InputAdornment>,
+            }
+        }
+        else { 
+            return {
+                endAdornment: <InputAdornment position="end">BPM </InputAdornment>,
+            }
+        }
+    }
+
+    changeTempoStyle(event) {
+        let style = event.target.value
+        if(style ==="Quarter" || style ==="BPM")
+            this.props.changeTempoStyle(style)
+    }
+
     handleInput(inputEvent) {
         const number = inputEvent.target.value
         if (this.isPositiveInteger(number)) {
@@ -66,22 +85,26 @@ class BpmInput extends Component {
                     <Card variant="outlined">
                         <Typography variant="caption" style={{ margin: 10 }}>Tempo</Typography>
                         <Grid container spacing={1} alignItems="center" justify="center" direction="row">
+                            <Grid item style={{ margin: 10 }}>
+                                <RadioGroup aria-label="Tempostyle" name="Tempostyle" value={this.props.tempoStyle} onChange={this.changeTempoStyle.bind(this)}>
+                                    <FormControlLabel value="Quarter" control={<Radio />} label="Quarter Notes per Minute" />
+                                    <FormControlLabel value="BPM" control={<Radio />} label="Beats per Minute" />
+                                </RadioGroup>
+                            </Grid>
                             <Grid item>
                                 <TextField
-                                    InputProps={{
-                                        startAdornment: <InputAdornment position="start">♩ = </InputAdornment>,
-                                    }}
+                                    InputProps={this.createAdornment()}
                                     style={{ margin: 10 }}
                                     id="username"
                                     onChange={this.handleInput.bind(this)}
                                     value={this.state.value}
                                     placeholder="0"
                                     margin="normal"
-                                    label="Enter BPM"
+                                    label="Enter Tempo"
                                     variant="standard"
                                     autoFocus={true} />
                             </Grid>
-                            <Grid item style={{margin: 10}}>
+                            <Grid item style={{ margin: 10 }}>
                                 <Grid container alignItems="center" justify="center" spacing={1} direction="row">
                                     <Grid item>
                                         <Button aria-label="+10" onClick={this.addBpm.bind(this, '+10')} variant="contained">+10</Button>

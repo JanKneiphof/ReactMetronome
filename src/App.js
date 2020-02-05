@@ -11,7 +11,9 @@ function App() {
         defaultBeatUnit="4"
         defaultBeatsPerMeasure="4"
         defaultBpm="120"
-        defaultBeatAccentuation={new Map([[0,3],[1,1],[2,1],[3,1]])}></Metronome>
+        defaultBeatAccentuation={new Map([[0,3],[1,1],[2,1],[3,1]])}
+        tempoStyle="Quarter">
+        </Metronome>
     </div>
   );
 }

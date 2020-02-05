@@ -14,19 +14,25 @@ class Metronome extends Component {
             beatUnit: this.props.defaultBeatUnit,
             beatsPerMeasure: this.props.defaultBeatsPerMeasure,
             isPlaying: false,
-            beatAccentuation: this.props.defaultBeatAccentuation
+            beatAccentuation: this.props.defaultBeatAccentuation,
+            tempoStyle: this.props.tempoStyle
         }
     }
 
     componentDidMount() {
         this.midiSounds.setEchoLevel(0);
-        this.midiSounds.setMasterVolume(0.5);
+        this.midiSounds.setMasterVolume(1.0);
     }
 
     updatePlayingLoop() {
         if (this.state.isPlaying === true) {
             this.playLoop()
         }
+    }
+
+    async changeTempoStyle(style) {
+        await this.setState({ tempoStyle: style })
+        this.updatePlayingLoop()
     }
 
     async updateBpm(number) {
@@ -85,7 +91,12 @@ class Metronome extends Component {
     playLoop() {
         this.setState({ isPlaying: true })
         var loop = this.createBeatLoop(this.state.beatsPerMeasure, this.state.subdivisionsPerBeat)
-        this.midiSounds.startPlayLoop(loop, this.state.beatUnitsPerMinute, 1 / (this.state.beatUnit * this.state.subdivisionsPerBeat));
+        if (this.state.tempoStyle === "Quarter") {
+            this.midiSounds.startPlayLoop(loop, this.state.beatUnitsPerMinute, 1 / (this.state.beatUnit * this.state.subdivisionsPerBeat));
+        }
+        else {
+            this.midiSounds.startPlayLoop(loop, this.state.beatUnitsPerMinute, 1 / (4 * this.state.subdivisionsPerBeat));
+        }
     }
     stopLoop() {
         this.setState({ isPlaying: false })
@@ -97,7 +108,7 @@ class Metronome extends Component {
             <div style={{ padding: 20 }}> {/*This is the recommended Workaround if you want to use the spacing prop in a Grid container, see: https://material-ui.com/components/grid/ */}
                 <Grid container spacing={2} alignItems="center" justify="center" direction="column">
                     <Grid item>
-                        <BpmInput defaultBpm={this.state.beatUnitsPerMinute} updateBpm={this.updateBpm.bind(this)}></BpmInput>
+                        <BpmInput defaultBpm={this.state.beatUnitsPerMinute} changeTempoStyle={this.changeTempoStyle.bind(this)} updateBpm={this.updateBpm.bind(this)} tempoStyle={this.state.tempoStyle}></BpmInput>
                     </Grid>
                     <Grid item >
                         <TimeSignatureInput defaultTimeSignature={[this.state.beatsPerMeasure, this.state.beatUnit]} updateTimeSignature={this.updateTimeSignature.bind(this)}></TimeSignatureInput>
