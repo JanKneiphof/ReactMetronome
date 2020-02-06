@@ -15,6 +15,14 @@ afterEach(() => {
   container = null;
 });
 
+function createBpmInput(updateBpmMock, defaultBpm) {
+  return (<BpmInput
+    tempoStyle="Quarter"
+    updateBpm={updateBpmMock}
+    currentBpm={defaultBpm}>
+  </BpmInput>)
+}
+
 describe("BpmInput", () => {
   test("displays default Value", async () => {
     let inputElement
