@@ -4,23 +4,13 @@ import noCapslockButtonText from '../styles/bpmInputButton.styles'
 
 
 class BpmInput extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            value: this.props.defaultBpm,
-        };
-    }
-
     addBpm(value) {
-        const number = parseInt(this.state.value, 10) + parseInt(value, 10)
+        const number = parseInt(this.props.currentBpm, 10) + parseInt(value, 10)
         if (number < 0) {
             return
         }
         else {
-            this.setState(
-                { value: number },
-                this.updateMetronomeBpm(number)
-            )
+            this.updateMetronomeBpm(number)
         }
     }
 
@@ -29,18 +19,15 @@ class BpmInput extends Component {
     }
 
     multiplyBpmBy(value) {
-        const number = Math.floor(parseInt(this.state.value, 10) * parseFloat(value, 10))
+        const number = Math.floor(parseInt(this.props.currentBpm, 10) * parseFloat(value, 10))
         if (number < 0) {
             return
         } else {
-            this.setState(
-                { value: number },
-                this.updateMetronomeBpm(number)
-            )
+            this.updateMetronomeBpm(number)
         }
     }
 
-    isPositiveInteger(number) {
+    isPositiveRealNumber(number) {
         if (isNaN(number) || number < 0) {
             return false
         }
@@ -55,7 +42,7 @@ class BpmInput extends Component {
                 startAdornment: <InputAdornment position="start">♩ = </InputAdornment>,
             }
         }
-        else { 
+        else {
             return {
                 endAdornment: <InputAdornment position="end">BPM </InputAdornment>,
             }
@@ -64,17 +51,14 @@ class BpmInput extends Component {
 
     changeTempoStyle(event) {
         let style = event.target.value
-        if(style ==="Quarter" || style ==="BPM")
+        if (style === "Quarter" || style === "BPM")
             this.props.changeTempoStyle(style)
     }
 
     handleInput(inputEvent) {
         const number = inputEvent.target.value
-        if (this.isPositiveInteger(number)) {
-            this.setState(
-                { value: number.trim() },
-                this.updateMetronomeBpm(number)
-            )
+        if (this.isPositiveRealNumber(number)) {
+            this.updateMetronomeBpm(number)
         }
     }
 
@@ -97,7 +81,7 @@ class BpmInput extends Component {
                                     style={{ margin: 10 }}
                                     id="username"
                                     onChange={this.handleInput.bind(this)}
-                                    value={this.state.value}
+                                    value={this.props.currentBpm}
                                     placeholder="0"
                                     margin="normal"
                                     label="Enter Tempo"
