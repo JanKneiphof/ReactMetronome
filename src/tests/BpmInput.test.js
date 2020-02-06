@@ -27,90 +27,87 @@ describe("BpmInput", () => {
   test("displays default Value", async () => {
     let inputElement
     await act(async () => {
-      ReactDOM.render(<BpmInput tempoStyle="Quarter" updateBpm={() => {}} currentBpm="1234"></BpmInput>, container)
+      ReactDOM.render(createBpmInput(() => { }, 1234), container)
       inputElement = getByLabelText(container, "Enter Tempo")
     });
-    expect(inputElement.value).toBe("1234")
-  })
-  test("can read typed Input", async () => {
-    let inputElement
-    await act(async () => {
-      ReactDOM.render(<BpmInput tempoStyle="Quarter" updateBpm={() => {}} currentBpm="120"></BpmInput>, container)
-      inputElement = getByLabelText(container, "Enter Tempo")
-      await myUserEvent.type(inputElement, "333", { allAtOnce: false, delay: 1 });
-    });
-    expect(inputElement.value).toBe("120333")
-  })
-  test("can read pasted Input", async () => {
-    let inputElement
-    await act(async () => {
-      ReactDOM.render(<BpmInput tempoStyle="Quarter" updateBpm={() => {}} currentBpm="120"></BpmInput>, container)
-      inputElement = getByLabelText(container, "Enter Tempo")
-      await myUserEvent.type(inputElement, "333", { allAtOnce: true });
-    });
-    expect(inputElement.value).toBe("120333")
+    expect(parseInt(inputElement.value)).toBe(1234)
   })
 
-  test("doesn't accept Letters", async () => {
+  test("calls update function if a number is typed", async () => {
     let inputElement
+    let updateBpmMock = jest.fn()
     await act(async () => {
-      ReactDOM.render(<BpmInput tempoStyle="Quarter" updateBpm={() => {}} currentBpm="" ></BpmInput>, container);
+      ReactDOM.render(createBpmInput(updateBpmMock, 120), container)
       inputElement = getByLabelText(container, "Enter Tempo")
-      await myUserEvent.type(inputElement, "A1B1", { allAtOnce: false, delay: 1 })
+      await myUserEvent.type(inputElement, "5", { allAtOnce: true })
     })
-    expect(inputElement.value).toBe("11")
+    expect(updateBpmMock.mock.calls.length).toBe(1)
+    expect(parseInt(updateBpmMock.mock.calls[0][0])).toBe(1205)
   })
 
-  test("doesn't accept Whitespace", async () => {
+  test("does not call the update function if a letter is typed", async () => {
     let inputElement
+    let updateBpmMock = jest.fn()
     await act(async () => {
-      ReactDOM.render(<BpmInput tempoStyle="Quarter" updateBpm={() => {}} currentBpm="120" ></BpmInput>, container);
+      ReactDOM.render(createBpmInput(updateBpmMock, 120), container)
       inputElement = getByLabelText(container, "Enter Tempo")
-      await myUserEvent.type(inputElement, " ", { allAtOnce: true })
+      await myUserEvent.type(inputElement, "E", { allAtOnce: true })
     })
-    expect(inputElement.value).toBe("120")
+    expect(updateBpmMock.mock.calls.length).toBe(0)
   })
 
-  test("Adds 10BPM on +10 Button", () => {
+  test("calls update Function after click on +10 Button", () => {
+    let updateBpmMock = jest.fn()
     act(() => {
-      ReactDOM.render(<BpmInput tempoStyle="Quarter" updateBpm={() => {}} currentBpm="110"></BpmInput>, container);
+      ReactDOM.render(createBpmInput(updateBpmMock, 110), container);
       userEvent.click(getByLabelText(container, "+10"))
     })
-    expect(getByLabelText(container, "Enter Tempo").value).toBe("120")
+    expect(parseInt(updateBpmMock.mock.calls[0][0])).toBe(120)
+    expect(updateBpmMock.mock.calls.length).toBe(1)
   })
-  test("Subtracts 10BPM on -10 Button", () => {
-    act( () => {
-      ReactDOM.render(<BpmInput tempoStyle="Quarter" updateBpm={() => {}} currentBpm="130"></BpmInput>, container);
+  test("calls update Function after click on -10 Button", () => {
+    let updateBpmMock = jest.fn()
+    act(() => {
+      ReactDOM.render(createBpmInput(updateBpmMock, 130), container);
       userEvent.click(getByLabelText(container, "-10"))
     })
-    expect(getByLabelText(container, "Enter Tempo").value).toBe("120")
+    expect(parseInt(updateBpmMock.mock.calls[0][0])).toBe(120)
+    expect(updateBpmMock.mock.calls.length).toBe(1)
   })
-  test("Multiplies BPM by 2 on x2 Button", () => {
-    act( () => {
-      ReactDOM.render(<BpmInput tempoStyle="Quarter" updateBpm={() => {}} currentBpm="60"></BpmInput>, container);
+  test("calls update Function after click on x2 Button", () => {
+    let updateBpmMock = jest.fn()
+    act(() => {
+      ReactDOM.render(createBpmInput(updateBpmMock, 60), container);
       userEvent.click(getByLabelText(container, "x2"))
     })
-    expect(getByLabelText(container, "Enter Tempo").value).toBe("120")
+    expect(parseInt(updateBpmMock.mock.calls[0][0])).toBe(120)
+    expect(updateBpmMock.mock.calls.length).toBe(1)
   })
-  test("Multiplies BPM by 1.5 on x1.5 Button", () => {
-    act( () => {
-      ReactDOM.render(<BpmInput tempoStyle="Quarter" updateBpm={() => {}} currentBpm="80"></BpmInput>, container);
+  test("calls update Function after click on x1.5 Button", () => {
+    let updateBpmMock = jest.fn()
+    act(() => {
+      ReactDOM.render(createBpmInput(updateBpmMock, 80), container);
       userEvent.click(getByLabelText(container, "x1.5"))
     })
-    expect(getByLabelText(container, "Enter Tempo").value).toBe("120")
+    expect(parseInt(updateBpmMock.mock.calls[0][0])).toBe(120)
+    expect(updateBpmMock.mock.calls.length).toBe(1)
   })
-  test("Divides BPM by 1.5 on ÷1.5 Button", () => {
-    act( () => {
-      ReactDOM.render(<BpmInput tempoStyle="Quarter" updateBpm={() => {}} currentBpm="160"></BpmInput>, container);
+  test("calls update Function after click on ÷1.5 Button", () => {
+    let updateBpmMock = jest.fn()
+    act(() => {
+      ReactDOM.render(createBpmInput(updateBpmMock, 160), container);
       userEvent.click(getByLabelText(container, "÷1.5"))
     })
-    expect(getByLabelText(container, "Enter Tempo").value).toBe("120")
+    expect(parseInt(updateBpmMock.mock.calls[0][0])).toBe(120)
+    expect(updateBpmMock.mock.calls.length).toBe(1)
   })
-  test("Divides BPM by 2 on ÷2 Button", () => {
-    act( () => {
-      ReactDOM.render(<BpmInput tempoStyle="Quarter" updateBpm={() => {}} currentBpm="240"></BpmInput>, container);
+  test("calls update Function after click on ÷2 Button", () => {
+    let updateBpmMock = jest.fn()
+    act(() => {
+      ReactDOM.render(createBpmInput(updateBpmMock, 240), container);
       userEvent.click(getByLabelText(container, "÷2"))
     })
-    expect(getByLabelText(container, "Enter Tempo").value).toBe("120")
+    expect(parseInt(updateBpmMock.mock.calls[0][0])).toBe(120)
+    expect(updateBpmMock.mock.calls.length).toBe(1)
   })
 })
