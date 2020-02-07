@@ -30,7 +30,7 @@ describe("BpmInput", () => {
       ReactDOM.render(createBpmInput(() => { }, 1234), container)
       inputElement = getByLabelText(container, "Enter Tempo")
     });
-    expect(parseInt(inputElement.value)).toBe(1234)
+    expect(inputElement.value).toBe("1234")
   })
 
   test("calls update function if a number is typed", async () => {
@@ -42,7 +42,7 @@ describe("BpmInput", () => {
       await myUserEvent.type(inputElement, "5", { allAtOnce: true })
     })
     expect(updateBpmMock.mock.calls.length).toBe(1)
-    expect(parseInt(updateBpmMock.mock.calls[0][0])).toBe(1205)
+    expect(updateBpmMock.mock.calls[0][0]).toBe("1205")
   })
 
   test("does not call the update function if a letter is typed", async () => {
@@ -54,6 +54,18 @@ describe("BpmInput", () => {
       await myUserEvent.type(inputElement, "E", { allAtOnce: true })
     })
     expect(updateBpmMock.mock.calls.length).toBe(0)
+  })
+
+  test("calls update function if a decimal number is typed", async () => {
+    let inputElement
+    let updateBpmMock = jest.fn()
+    await act(async () => {
+      ReactDOM.render(createBpmInput(updateBpmMock), container)
+      inputElement = getByLabelText(container, "Enter Tempo")
+      await myUserEvent.type(inputElement, "12.5", { allAtOnce: true })
+    })
+    expect(updateBpmMock.mock.calls.length).toBe(1)
+    expect(updateBpmMock.mock.calls[0][0]).toBe("12.5")
   })
 
   test("calls update Function after click on +10 Button", () => {
