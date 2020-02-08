@@ -1,4 +1,4 @@
-import { Button, Grid } from "@material-ui/core";
+import { Button, Grid, Link, Typography } from "@material-ui/core";
 import MIDISounds from 'midi-sounds-react';
 import React, { Component } from "react";
 import BpmInput from "./BpmInput";
@@ -128,6 +128,12 @@ class Metronome extends Component {
                     </Grid>
                     <Grid item>
                         <MIDISounds ref={(ref) => (this.midiSounds = ref)} appElementName="root" drums={[200, 205, 210]}></MIDISounds>
+                    </Grid>
+                    <Grid item>
+                        <Typography>
+                            Check out the Code on&nbsp;
+                            <Link href="https://github.com/JanKneiphof/ReactMetronome" target="_blank" rel="noreferrer">Github</Link>
+                        </Typography>
                     </Grid>
                 </Grid>
             </div>
