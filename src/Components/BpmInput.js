@@ -1,6 +1,7 @@
 import { Button, Grid, InputAdornment, TextField, Card, Typography, RadioGroup, FormControlLabel, Radio } from "@material-ui/core";
 import React, { Component } from 'react';
 import noCapslockButtonText from '../styles/bpmInputButton.styles'
+import {captionInCard, gridInCard} from '../styles/card.styles'
 
 
 class BpmInput extends Component {
@@ -65,15 +66,15 @@ class BpmInput extends Component {
     render() {
         return (
             <Card variant="outlined">
-                <Typography variant="caption" style={{ margin: 10 }}>Tempo</Typography>
+                <Typography variant="caption" style={captionInCard}>Tempo</Typography>
                 <Grid container spacing={1} alignItems="center" justify="center" direction="row">
-                    <Grid item style={{ margin: 10 }}>
+                    <Grid item style={gridInCard}>
                         <RadioGroup aria-label="Tempostyle" name="Tempostyle" value={this.props.tempoStyle} onChange={this.changeTempoStyle.bind(this)}>
                             <FormControlLabel value="Quarter" control={<Radio />} label="Quarter Notes per Minute" />
                             <FormControlLabel value="BPM" control={<Radio />} label="Beats per Minute" />
                         </RadioGroup>
                     </Grid>
-                    <Grid item style={{ margin: 10 }}>
+                    <Grid item style={gridInCard}>
                         <TextField
                             InputProps={this.createAdornment()}
                             id="username"
@@ -85,7 +86,7 @@ class BpmInput extends Component {
                             variant="standard"
                             autoFocus={true} />
                     </Grid>
-                    <Grid item style={{ margin: 10 }}>
+                    <Grid item style={gridInCard}>
                         <Grid container alignItems="center" justify="center" spacing={1} direction="row">
                             <Grid item>
                                 <Button aria-label="+10" onClick={this.addBpm.bind(this, '+10')} variant="contained">+10</Button>

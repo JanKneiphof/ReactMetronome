@@ -1,5 +1,6 @@
 import { Button, ButtonGroup, Card, Grid, Typography } from '@material-ui/core';
 import React, { Component } from 'react';
+import {captionInCard, gridInCard} from '../styles/card.styles'
 
 
 class SubdivisionInput extends Component {
@@ -43,13 +44,13 @@ class SubdivisionInput extends Component {
             )
 
         }
-        return (<Grid container style={{ margin: 10 }} direction="row">{buttons}</Grid>)
+        return (<Grid container style={gridInCard} direction="row">{buttons}</Grid>)
     }
 
     render() {
         return (
             <Card variant="outlined">
-                <Typography variant="caption" style={{ margin: 10 }}>Beat Accents</Typography>
+                <Typography variant="caption" style={captionInCard}>Beat Accents</Typography>
                 {this.createButtonGroups(this.props.numberOfSubdivisions)}
             </Card>
         )
