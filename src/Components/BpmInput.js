@@ -64,58 +64,53 @@ class BpmInput extends Component {
 
     render() {
         return (
-            <Grid container>
-                <Grid item>
-                    <Card variant="outlined">
-                        <Typography variant="caption" style={{ margin: 10 }}>Tempo</Typography>
-                        <Grid container spacing={1} alignItems="center" justify="center" direction="row">
-                            <Grid item style={{ margin: 10 }}>
-                                <RadioGroup aria-label="Tempostyle" name="Tempostyle" value={this.props.tempoStyle} onChange={this.changeTempoStyle.bind(this)}>
-                                    <FormControlLabel value="Quarter" control={<Radio />} label="Quarter Notes per Minute" />
-                                    <FormControlLabel value="BPM" control={<Radio />} label="Beats per Minute" />
-                                </RadioGroup>
+            <Card variant="outlined">
+                <Typography variant="caption" style={{ margin: 10 }}>Tempo</Typography>
+                <Grid container spacing={1} alignItems="center" justify="center" direction="row">
+                    <Grid item style={{ margin: 10 }}>
+                        <RadioGroup aria-label="Tempostyle" name="Tempostyle" value={this.props.tempoStyle} onChange={this.changeTempoStyle.bind(this)}>
+                            <FormControlLabel value="Quarter" control={<Radio />} label="Quarter Notes per Minute" />
+                            <FormControlLabel value="BPM" control={<Radio />} label="Beats per Minute" />
+                        </RadioGroup>
+                    </Grid>
+                    <Grid item style={{ margin: 10 }}>
+                        <TextField
+                            InputProps={this.createAdornment()}
+                            id="username"
+                            onChange={this.handleInput.bind(this)}
+                            value={this.props.currentBpm}
+                            placeholder="0"
+                            margin="normal"
+                            label="Enter Tempo"
+                            variant="standard"
+                            autoFocus={true} />
+                    </Grid>
+                    <Grid item style={{ margin: 10 }}>
+                        <Grid container alignItems="center" justify="center" spacing={1} direction="row">
+                            <Grid item>
+                                <Button aria-label="+10" onClick={this.addBpm.bind(this, '+10')} variant="contained">+10</Button>
                             </Grid>
                             <Grid item>
-                                <TextField
-                                    InputProps={this.createAdornment()}
-                                    style={{ margin: 10 }}
-                                    id="username"
-                                    onChange={this.handleInput.bind(this)}
-                                    value={this.props.currentBpm}
-                                    placeholder="0"
-                                    margin="normal"
-                                    label="Enter Tempo"
-                                    variant="standard"
-                                    autoFocus={true} />
+                                <Button aria-label="x1.5" style={noCapslockButtonText} onClick={this.multiplyBpmBy.bind(this, '1.5')} variant="contained">x1.5</Button>
                             </Grid>
-                            <Grid item style={{ margin: 10 }}>
-                                <Grid container alignItems="center" justify="center" spacing={1} direction="row">
-                                    <Grid item>
-                                        <Button aria-label="+10" onClick={this.addBpm.bind(this, '+10')} variant="contained">+10</Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button aria-label="x1.5" style={noCapslockButtonText} onClick={this.multiplyBpmBy.bind(this, '1.5')} variant="contained">x1.5</Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button aria-label="x2" style={noCapslockButtonText} onClick={this.multiplyBpmBy.bind(this, '2')} variant="contained" >x2.0</Button>
-                                    </Grid>
-                                </Grid>
-                                <Grid container justify="center" alignItems="center" spacing={1} direction="row">
-                                    <Grid item>
-                                        <Button aria-label="-10" onClick={this.addBpm.bind(this, '-10')} variant="contained">-10</Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button aria-label="÷1.5" onClick={this.multiplyBpmBy.bind(this, '0.75')} variant="contained">÷1.5</Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button aria-label="÷2" onClick={this.multiplyBpmBy.bind(this, '0.5')} variant="contained">÷2</Button>
-                                    </Grid>
-                                </Grid>
+                            <Grid item>
+                                <Button aria-label="x2" style={noCapslockButtonText} onClick={this.multiplyBpmBy.bind(this, '2')} variant="contained" >x2.0</Button>
                             </Grid>
                         </Grid>
-                    </Card>
+                        <Grid container justify="center" alignItems="center" spacing={1} direction="row">
+                            <Grid item>
+                                <Button aria-label="-10" onClick={this.addBpm.bind(this, '-10')} variant="contained">-10</Button>
+                            </Grid>
+                            <Grid item>
+                                <Button aria-label="÷1.5" onClick={this.multiplyBpmBy.bind(this, '0.75')} variant="contained">÷1.5</Button>
+                            </Grid>
+                            <Grid item>
+                                <Button aria-label="÷2" onClick={this.multiplyBpmBy.bind(this, '0.5')} variant="contained">÷2</Button>
+                            </Grid>
+                        </Grid>
+                    </Grid>
                 </Grid>
-            </Grid>
+            </Card>
         )
     }
 }

@@ -43,18 +43,16 @@ class SubdivisionInput extends Component {
             )
 
         }
-        return (<Grid container  style={{margin: 10}} direction="row">{buttons}</Grid>)
+        return (<Grid container style={{ margin: 10 }} direction="row">{buttons}</Grid>)
     }
 
     render() {
-        return (<Grid container>
-            <Grid item>
-                <Card variant="outlined">
-                    <Typography variant="caption" style={{margin: 10}}>Beat Accents</Typography>
-                    {this.createButtonGroups(this.props.numberOfSubdivisions)}
-                </Card>
-            </Grid>
-        </Grid>)
+        return (
+            <Card variant="outlined">
+                <Typography variant="caption" style={{ margin: 10 }}>Beat Accents</Typography>
+                {this.createButtonGroups(this.props.numberOfSubdivisions)}
+            </Card>
+        )
     }
 }
 

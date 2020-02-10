@@ -34,12 +34,10 @@ class TimeSignatureInput extends Component {
     }
 
     render() {
-        return (<Grid container style={{ padding: 1 }}>
+        return (
             <Card variant="outlined">
-                <Grid item>
-                    <Typography style={{ margin: 10 }} variant="caption">Time Signature</Typography>
-                </Grid>
-                <Grid container spacing={1} alignItems="center" justify="center" direction="column">
+                <Typography style={{ margin: 10 }} variant="caption">Time Signature</Typography>
+                <Grid container alignItems="center" justify="center" direction="column">
                     <Grid item style={{ margin: 10 }}>
                         <TextField variant="standard" value={this.state.beatsPerMeasure} onChange={this.updateBeatsPerMeasure.bind(this)} label="Beats per Measure"></TextField>
                     </Grid>
@@ -48,7 +46,6 @@ class TimeSignatureInput extends Component {
                     </Grid>
                 </Grid>
             </Card>
-        </Grid>
         )
     };
 }
