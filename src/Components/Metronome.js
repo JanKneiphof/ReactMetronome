@@ -40,7 +40,7 @@ class Metronome extends Component {
         this.updatePlayingLoop()
     }
 
-    async updateTimeSignature([beatsPerMeasure, beatUnit]) {
+    async updateTimeSignature(beatsPerMeasure, beatUnit) {
         let updatedAccents = new Map(this.state.beatAccentuation)
         for (let index = this.state.beatsPerMeasure; index < beatsPerMeasure; index++) {
             updatedAccents.set(parseInt(index), 1)
@@ -111,7 +111,7 @@ class Metronome extends Component {
                         <BpmInput defaultBpm={this.state.beatUnitsPerMinute} changeTempoStyle={this.changeTempoStyle.bind(this)} updateBpm={this.updateBpm.bind(this)} currentBpm={this.state.beatUnitsPerMinute} tempoStyle={this.state.tempoStyle}></BpmInput>
                     </Grid>
                     <Grid item >
-                        <TimeSignatureInput defaultTimeSignature={[this.state.beatsPerMeasure, this.state.beatUnit]} updateTimeSignature={this.updateTimeSignature.bind(this)}></TimeSignatureInput>
+                        <TimeSignatureInput beatUnit={this.state.beatUnit} beatsPerMeasure={this.state.beatsPerMeasure} updateTimeSignature={this.updateTimeSignature.bind(this)}></TimeSignatureInput>
                     </Grid>
                     <Grid item>
                         <Grid container justify="center" spacing={2} column="row">
