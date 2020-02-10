@@ -30,6 +30,57 @@ class Metronome extends Component {
         }
     }
 
+    playLoop() {
+        this.setState({ isPlaying: true })
+        var loop = this.createBeatLoop(this.state.beatsPerMeasure, this.state.subdivisionsPerBeat, this.state.beatAccentuation)
+        if (this.state.tempoStyle === "Quarter") {
+            this.midiSounds.startPlayLoop(loop, this.state.beatUnitsPerMinute, 1 / (this.state.beatUnit * this.state.subdivisionsPerBeat));
+        }
+        else {
+            this.midiSounds.startPlayLoop(loop, this.state.beatUnitsPerMinute, 1 / (4 * this.state.subdivisionsPerBeat));
+        }
+    }
+
+    createBeatLoop(beatsPerMeasure, subdivisionsPerBeat, beatAccentuation) {
+        const firstBeat = [[200], []];
+        const weakBeat = [[210], []];
+        const strongBeat = [[205], []];
+        const muteBeat = [[], []]
+        var beatLoop = [];
+
+        for (let tick = 0; tick < (beatsPerMeasure * subdivisionsPerBeat); tick++) {
+            let accent = beatAccentuation.get(tick)
+            switch (accent) {
+                case 1: beatLoop[tick] = weakBeat;
+                    break;
+                case 2: beatLoop[tick] = strongBeat;
+                    break;
+                case 3: beatLoop[tick] = firstBeat;
+                    break;
+                case 0: beatLoop[tick] = muteBeat;
+                    break;
+                default: beatLoop[tick] = muteBeat;
+            }
+        }
+        return beatLoop;
+
+    }
+
+    stopLoop() {
+        this.setState({ isPlaying: false })
+        this.midiSounds.stopPlayLoop()
+    }
+
+    async changeAccentuation(index) {
+        let currentAccent = this.state.beatAccentuation.get(index - 1) || 0
+        let updatedAccents = new Map(this.state.beatAccentuation).set(index - 1, ((currentAccent + 1) % 4))
+        await this.setState({
+            beatAccentuation: updatedAccents
+        })
+
+        this.updatePlayingLoop()
+    }
+
     async changeTempoStyle(style) {
         await this.setState({ tempoStyle: style })
         this.updatePlayingLoop()
@@ -51,56 +102,6 @@ class Metronome extends Component {
             beatAccentuation: updatedAccents
         })
         this.updatePlayingLoop()
-    }
-
-    createBeatLoop(beatsPerMeasure, subdivisionsPerBeat) {
-        const firstBeat = [[200], []];
-        const weakBeat = [[210], []];
-        const strongBeat = [[205], []];
-        const muteBeat = [[], []]
-        var beatLoop = [];
-
-        for (let tick = 0; tick < (beatsPerMeasure * subdivisionsPerBeat); tick++) {
-            let accent = this.state.beatAccentuation.get(tick)
-            switch (accent) {
-                case 1: beatLoop[tick] = weakBeat;
-                    break;
-                case 2: beatLoop[tick] = strongBeat;
-                    break;
-                case 3: beatLoop[tick] = firstBeat;
-                    break;
-                case 0: beatLoop[tick] = muteBeat;
-                    break;
-                default: beatLoop[tick] = muteBeat;
-            }
-        }
-        return beatLoop;
-
-    }
-
-    async changeAccentuation(index) {
-        let currentAccent = this.state.beatAccentuation.get(index - 1) || 0
-        let updatedAccents = new Map(this.state.beatAccentuation).set(index - 1, ((currentAccent + 1) % 4))
-        await this.setState({
-            beatAccentuation: updatedAccents
-        })
-
-        this.updatePlayingLoop()
-    }
-
-    playLoop() {
-        this.setState({ isPlaying: true })
-        var loop = this.createBeatLoop(this.state.beatsPerMeasure, this.state.subdivisionsPerBeat)
-        if (this.state.tempoStyle === "Quarter") {
-            this.midiSounds.startPlayLoop(loop, this.state.beatUnitsPerMinute, 1 / (this.state.beatUnit * this.state.subdivisionsPerBeat));
-        }
-        else {
-            this.midiSounds.startPlayLoop(loop, this.state.beatUnitsPerMinute, 1 / (4 * this.state.subdivisionsPerBeat));
-        }
-    }
-    stopLoop() {
-        this.setState({ isPlaying: false })
-        this.midiSounds.stopPlayLoop()
     }
 
     render() {
