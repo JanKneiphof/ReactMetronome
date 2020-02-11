@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import BpmInput from "./BpmInput";
 import TimeSignatureInput from "./TimeSignatureInput";
 import SubdivisionInput from "./SubdivisionInput";
+import PolyrythmInput from './PolyrythmInput'
 
 class Metronome extends Component {
     constructor(props) {
@@ -41,6 +42,16 @@ class Metronome extends Component {
         }
     }
 
+    async playPolyrythm(counterRythm, basicPulse) {
+        let accents = this.createPolyrythmAccents(counterRythm, basicPulse)
+        await this.setState({
+            beatsPerMeasure: (counterRythm * basicPulse),
+            beatUnit: (counterRythm * basicPulse),
+            beatAccentuation: accents
+        })
+        this.playLoop()
+    }
+
     createBeatLoop(beatsPerMeasure, subdivisionsPerBeat, beatAccentuation) {
         const firstBeat = [[200], []];
         const weakBeat = [[210], []];
@@ -63,7 +74,23 @@ class Metronome extends Component {
             }
         }
         return beatLoop;
+    }
 
+    createPolyrythmAccents(counterRythm, basicPulse) {
+        var accents = new Map()
+        accents.set(0, 3)
+        for (let tick = 1; tick < (counterRythm * basicPulse); tick++) {
+            if ((tick % counterRythm) === 0) {
+                accents.set(tick, 2)
+            }
+            else if ((tick % basicPulse) === 0) {
+                accents.set(tick, 1)
+            }
+            else {
+                accents.set(tick, 0)
+            }
+        }
+        return accents
     }
 
     stopLoop() {
@@ -123,6 +150,9 @@ class Metronome extends Component {
                                 <Button variant="contained" onClick={this.stopLoop.bind(this)}>Stop sound</Button>
                             </Grid>
                         </Grid>
+                    </Grid>
+                    <Grid item>
+                        <PolyrythmInput playPolyrythm={this.playPolyrythm.bind(this)}></PolyrythmInput>
                     </Grid>
                     <Grid item>
                         <SubdivisionInput changeSubdivision={this.changeAccentuation.bind(this)} beatAccentuation={this.state.beatAccentuation} numberOfSubdivisions={this.state.beatsPerMeasure}></SubdivisionInput>
