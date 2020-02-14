@@ -53,6 +53,10 @@ class Metronome extends Component {
     }
 
     createBeatLoop(beatsPerMeasure, subdivisionsPerBeat, beatAccentuation) {
+        if(!beatsPerMeasure) {
+            return [[[],[]]]
+        }
+
         const firstBeat = [[200], []];
         const weakBeat = [[210], []];
         const strongBeat = [[205], []];
