@@ -5,7 +5,7 @@ import { captionInCard, gridInCard } from '../styles/card.styles';
 class PolyrythmInput extends Component {
 
     constructor(props) {
-        super(props) 
+        super(props)
         this.state = {
             counterRythm: 1,
             basicPulse: 1
@@ -17,7 +17,7 @@ class PolyrythmInput extends Component {
             return
         }
         else {
-            await this.setState({counterRythm: changeEvent.target.value})
+            await this.setState({ counterRythm: changeEvent.target.value })
         }
     }
     async updateBasicPulse(changeEvent) {
@@ -25,15 +25,15 @@ class PolyrythmInput extends Component {
             return
         }
         else {
-            await this.setState({basicPulse: changeEvent.target.value})
+            await this.setState({ basicPulse: changeEvent.target.value })
         }
     }
 
     createOptions(maxIndex) {
         var options = []
-        for (let index = 1; index < maxIndex+1; index++) {
+        for (let index = 1; index < maxIndex + 1; index++) {
             options.push(<option key={index} value={index}>{index}</option>);
-            
+
         }
         return (options)
     }
@@ -62,7 +62,7 @@ class PolyrythmInput extends Component {
                         </NativeSelect>
                     </Grid>
                     <Grid item style={gridInCard}>
-                        <Button variant="contained" onClick={() => this.playPolyrythm()}>Create Polyrythm</Button>
+                        <Button variant="contained" onClick={() => this.playPolyrythm()}>Play Polyrythm</Button>
                     </Grid>
                 </Grid>
             </Card>
