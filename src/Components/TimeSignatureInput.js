@@ -1,9 +1,9 @@
 import { Grid, TextField, Card, Typography } from "@material-ui/core";
 import React, { Component } from "react";
-import {captionInCard, gridInCard} from '../styles/card.styles'
+import { captionInCard, gridInCard } from '../styles/card.styles'
 
 class TimeSignatureInput extends Component {
-    isPositiveInteger(number) {
+    isPositiveRealNumber(number) {
         if (isNaN(number) || number < 0) {
             return false
         }
@@ -14,13 +14,13 @@ class TimeSignatureInput extends Component {
 
     updateBeatsPerMeasure(inputEvent) {
         let number = inputEvent.target.value.trim()
-        if (this.isPositiveInteger(number)) {
+        if (this.isPositiveRealNumber(number)) {
             this.props.updateTimeSignature(number, this.props.beatUnit)
         }
     }
     updateBeatUnit(inputEvent) {
         let number = inputEvent.target.value.trim()
-        if (this.isPositiveInteger(number)) {
+        if (this.isPositiveRealNumber(number)) {
             this.props.updateTimeSignature(this.props.beatsPerMeasure, number)
         }
     }
@@ -31,10 +31,10 @@ class TimeSignatureInput extends Component {
                 <Typography style={captionInCard} variant="caption">Time Signature</Typography>
                 <Grid container alignItems="center" justify="center" direction="column">
                     <Grid item style={gridInCard}>
-                        <TextField variant="standard" value={this.props.beatsPerMeasure} onChange={this.updateBeatsPerMeasure.bind(this)} label="Beats per Measure"></TextField>
+                        <TextField variant="standard" id="BeatsPerMeasureInput" value={this.props.beatsPerMeasure} onChange={this.updateBeatsPerMeasure.bind(this)} label="Beats per Measure"></TextField>
                     </Grid>
                     <Grid item style={gridInCard}>
-                        <TextField variant="standard" value={this.props.beatUnit} onChange={this.updateBeatUnit.bind(this)} label="Beat Unit"></TextField>
+                        <TextField variant="standard" id="BeatUnitInput" value={this.props.beatUnit} onChange={this.updateBeatUnit.bind(this)} label="Beat Unit"></TextField>
                     </Grid>
                 </Grid>
             </Card>
