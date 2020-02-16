@@ -50,10 +50,10 @@ class PolyrythmInput extends Component {
                 <Grid container alignItems="center" justify="center" direction="row">
                     <Grid item style={gridInCard}>
                         <FormControl>
-                            <InputLabel>
+                            <InputLabel htmlFor="Counterrythm-Input">
                                 Counterrythm
                             </InputLabel>
-                            <NativeSelect onChange={(event) => this.updateCounterRythm(event)}>
+                            <NativeSelect id="Counterrythm-Input" onChange={(event) => this.updateCounterRythm(event)}>
                                 {this.createOptions(100)}
                             </NativeSelect>
                         </FormControl>
@@ -63,16 +63,16 @@ class PolyrythmInput extends Component {
                     </Grid>
                     <Grid item style={gridInCard}>
                         <FormControl>
-                            <InputLabel>
+                            <InputLabel htmlFor="Basic-Pulse-Input">
                                 Basic&nbsp;Pulse
                             </InputLabel>
-                            <NativeSelect onChange={(event) => this.updateBasicPulse(event)}>
+                            <NativeSelect id="Basic-Pulse-Input" onChange={(event) => this.updateBasicPulse(event)}>
                                 {this.createOptions(100)}
                             </NativeSelect>
                         </FormControl>
                     </Grid>
                     <Grid item style={gridInCard}>
-                        <Button variant="contained" onClick={() => this.playPolyrythm()}>Play Polyrythm</Button>
+                        <Button variant="contained" aria-label="Play-Polyrythm" onClick={() => this.playPolyrythm()}>Play Polyrythm</Button>
                     </Grid>
                 </Grid>
             </Card>
