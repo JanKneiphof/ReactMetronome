@@ -1,4 +1,4 @@
-import { Card, Grid, Typography, NativeSelect, Button } from '@material-ui/core';
+import { Card, Grid, Typography, NativeSelect, Button, InputLabel, FormControlLabel, FormControl } from '@material-ui/core';
 import React, { Component } from 'react';
 import { captionInCard, gridInCard } from '../styles/card.styles';
 
@@ -49,17 +49,27 @@ class PolyrythmInput extends Component {
                 <Typography style={captionInCard} variant="caption">Polyrythm</Typography>
                 <Grid container alignItems="center" justify="center" direction="row">
                     <Grid item style={gridInCard}>
-                        <NativeSelect onChange={(event) => this.updateCounterRythm(event)}>
-                            {this.createOptions(100)}
-                        </NativeSelect>
+                        <FormControl>
+                            <InputLabel>
+                                Counterrythm
+                            </InputLabel>
+                            <NativeSelect onChange={(event) => this.updateCounterRythm(event)}>
+                                {this.createOptions(100)}
+                            </NativeSelect>
+                        </FormControl>
                     </Grid>
                     <Grid item style={gridInCard}>
                         <Typography> against </Typography>
                     </Grid>
                     <Grid item style={gridInCard}>
-                        <NativeSelect onChange={(event) => this.updateBasicPulse(event)}>
-                            {this.createOptions(100)}
-                        </NativeSelect>
+                        <FormControl>
+                            <InputLabel>
+                                Basic&nbsp;Pulse
+                            </InputLabel>
+                            <NativeSelect onChange={(event) => this.updateBasicPulse(event)}>
+                                {this.createOptions(100)}
+                            </NativeSelect>
+                        </FormControl>
                     </Grid>
                     <Grid item style={gridInCard}>
                         <Button variant="contained" onClick={() => this.playPolyrythm()}>Play Polyrythm</Button>
