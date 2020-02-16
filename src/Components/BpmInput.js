@@ -69,7 +69,7 @@ class BpmInput extends Component {
                 <Typography variant="caption" style={captionInCard}>Tempo</Typography>
                 <Grid container spacing={1} alignItems="center" justify="center" direction="row">
                     <Grid item style={gridInCard}>
-                        <RadioGroup aria-label="Tempostyle" name="Tempostyle" value={this.props.tempoStyle} onChange={this.changeTempoStyle.bind(this)}>
+                        <RadioGroup aria-label="Tempostyle" label="Tempostyle" name="Tempostyle" value={this.props.tempoStyle} onChange={this.changeTempoStyle.bind(this)}>
                             <FormControlLabel value="Quarter" control={<Radio />} label="Quarter Notes per Minute" />
                             <FormControlLabel value="BPM" control={<Radio />} label="Beats per Minute" />
                         </RadioGroup>
