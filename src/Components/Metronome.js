@@ -20,11 +20,6 @@ class Metronome extends Component {
         }
     }
 
-    componentDidMount() {
-        this.midiSounds.setEchoLevel(0);
-        this.midiSounds.setMasterVolume(1.0);
-    }
-
     updatePlayingLoop() {
         if (this.state.isPlaying === true) {
             this.playLoop()
@@ -33,13 +28,18 @@ class Metronome extends Component {
 
     playLoop() {
         this.setState({ isPlaying: true })
-        var loop = this.createBeatLoop(this.state.beatsPerMeasure, this.state.subdivisionsPerBeat, this.state.beatAccentuation)
-        if (this.state.tempoStyle === "Quarter") {
-            this.midiSounds.startPlayLoop(loop, this.state.beatUnitsPerMinute, 1 / (this.state.beatUnit * this.state.subdivisionsPerBeat));
-        }
-        else {
-            this.midiSounds.startPlayLoop(loop, this.state.beatUnitsPerMinute, 1 / (4 * this.state.subdivisionsPerBeat));
-        }
+        this.props.midiPlayback.current.updateBeatLoop(
+            this.state.beatsPerMeasure,
+            this.state.subdivisionsPerBeat,
+            this.state.beatAccentuation,
+            this.state.tempoStyle,
+            this.state.beatUnitsPerMinute,
+            this.state.beatUnit
+        )
+    }
+    stopLoop() {
+        this.setState({ isPlaying: false })
+        this.props.midiPlayback.current.stopPlaying()
     }
 
     async playPolyrythm(counterRythm, basicPulse) {
@@ -51,35 +51,6 @@ class Metronome extends Component {
         })
         this.playLoop()
     }
-
-    createBeatLoop(beatsPerMeasure, subdivisionsPerBeat, beatAccentuation) {
-        if (!beatsPerMeasure) {
-            return [[[], []]]
-        }
-
-        const firstBeat = [[200], []];
-        const weakBeat = [[210], []];
-        const strongBeat = [[205], []];
-        const muteBeat = [[], []]
-        var beatLoop = [];
-
-        for (let tick = 0; tick < (beatsPerMeasure * subdivisionsPerBeat); tick++) {
-            let accent = beatAccentuation.get(tick)
-            switch (accent) {
-                case 1: beatLoop[tick] = weakBeat;
-                    break;
-                case 2: beatLoop[tick] = strongBeat;
-                    break;
-                case 3: beatLoop[tick] = firstBeat;
-                    break;
-                case 0: beatLoop[tick] = muteBeat;
-                    break;
-                default: beatLoop[tick] = muteBeat;
-            }
-        }
-        return beatLoop;
-    }
-
     createPolyrythmAccents(counterRythm, basicPulse) {
         var accents = new Map()
         accents.set(0, 3)
@@ -97,10 +68,6 @@ class Metronome extends Component {
         return accents
     }
 
-    stopLoop() {
-        this.setState({ isPlaying: false })
-        this.midiSounds.stopPlayLoop()
-    }
 
     async changeAccentuation(index) {
         let currentAccent = this.state.beatAccentuation.get(index - 1) || 0
