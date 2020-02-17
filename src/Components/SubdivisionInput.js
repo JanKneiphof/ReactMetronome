@@ -13,7 +13,8 @@ class SubdivisionInput extends Component {
         let buttons = []
 
         for (let index = 1; index <= size; index++) {
-            let accentString = "█".repeat(this.props.beatAccentuation.get(index - 1))
+            let intensity = this.props.beatAccentuation.get(index - 1)
+            let accentString = "█".repeat(intensity)
             if (accentString.length === 0) {
                 accentString = "mute"
             }
@@ -32,7 +33,7 @@ class SubdivisionInput extends Component {
                                     size="small"
                                     onClick={this.props.changeSubdivision.bind(this, index)}
                                     variant="outlined"
-                                    value={index}
+                                    value={intensity}
                                     aria-label={"Subdivision " + index}
                                 >
                                     {index}

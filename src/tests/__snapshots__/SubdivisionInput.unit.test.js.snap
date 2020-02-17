@@ -41,7 +41,7 @@ exports[`SubdivisionInput matches Snapshot 1`] = `
               class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined MuiButton-outlinedSizeSmall MuiButton-sizeSmall"
               tabindex="0"
               type="button"
-              value="1"
+              value="3"
             >
               <span
                 class="MuiButton-label"
@@ -83,7 +83,7 @@ exports[`SubdivisionInput matches Snapshot 1`] = `
               class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined MuiButton-outlinedSizeSmall MuiButton-sizeSmall"
               tabindex="0"
               type="button"
-              value="2"
+              value="1"
             >
               <span
                 class="MuiButton-label"
@@ -125,7 +125,7 @@ exports[`SubdivisionInput matches Snapshot 1`] = `
               class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined MuiButton-outlinedSizeSmall MuiButton-sizeSmall"
               tabindex="0"
               type="button"
-              value="3"
+              value="1"
             >
               <span
                 class="MuiButton-label"
@@ -167,7 +167,7 @@ exports[`SubdivisionInput matches Snapshot 1`] = `
               class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined MuiButton-outlinedSizeSmall MuiButton-sizeSmall"
               tabindex="0"
               type="button"
-              value="4"
+              value="1"
             >
               <span
                 class="MuiButton-label"
