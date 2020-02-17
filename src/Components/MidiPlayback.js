@@ -7,3 +7,5 @@ class MidiPlayback extends Component {
         )
     }
 }
+
+export default MidiPlayback
