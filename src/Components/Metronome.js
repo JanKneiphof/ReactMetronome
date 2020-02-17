@@ -24,6 +24,16 @@ class Metronome extends Component {
             this.playLoop()
         }
     }
+    updateTempo() {
+        if (this.state.isPlaying === true) {
+            this.props.beatPlayer.current.updateTempo(
+                this.state.beatUnitsPerMinute,
+                this.state.tempoStyle,
+                this.state.beatUnit,
+                this.state.subdivisionsPerBeat
+            )
+        }
+    }
 
     playLoop() {
         this.setState({ isPlaying: true })
@@ -81,12 +91,12 @@ class Metronome extends Component {
 
     async changeTempoStyle(style) {
         await this.setState({ tempoStyle: style })
-        this.updatePlayingLoop()
+        this.updateTempo()
     }
 
     async updateBpm(number) {
         await this.setState({ beatUnitsPerMinute: number })
-        this.updatePlayingLoop()
+        this.updateTempo()
     }
 
     async updateTimeSignature(beatsPerMeasure, beatUnit) {
