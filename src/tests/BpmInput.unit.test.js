@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import BpmInput from '../Components/BpmInput';
 import { act } from 'react-dom/test-utils'
-import myUserEvent from "./myUserTesting"
+import myUserEvent from "./customLibraries/myUserTesting"
 import { getByLabelText } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
