@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 
 class BeatLoopPlayer extends Component {
 
-    componentDidMount() {
-        this.props.midiPlayback.current.setEchoLevel(0);
-        this.props.midiPlayback.current.setMasterVolume(1.0);
-    }
-
     updateBeatLoop(beatsPerMeasure, subdivisionsPerBeat, beatAccentuation, tempoStyle, beatUnitsPerMinute, beatUnit) {
         var loop = this.createBeatLoop(beatsPerMeasure, subdivisionsPerBeat, beatAccentuation)
         if (tempoStyle === "Quarter") {
@@ -50,7 +45,8 @@ class BeatLoopPlayer extends Component {
     }
 
     render() {
-        return (<div></div>
+        return (
+            <div></div>
         )
     }
 }
