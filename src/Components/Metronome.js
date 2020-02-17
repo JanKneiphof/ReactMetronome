@@ -26,7 +26,7 @@ class Metronome extends Component {
     }
     updateTempo() {
         if (this.state.isPlaying === true) {
-            this.props.beatPlayer.current.updateTempo(
+            this.props.updateTempo(
                 this.state.beatUnitsPerMinute,
                 this.state.tempoStyle,
                 this.state.beatUnit,
@@ -37,7 +37,7 @@ class Metronome extends Component {
 
     playLoop() {
         this.setState({ isPlaying: true })
-        this.props.beatPlayer.current.updateBeatLoop(
+        this.props.updateBeatLoop(
             this.state.beatsPerMeasure,
             this.state.subdivisionsPerBeat,
             this.state.beatAccentuation,
@@ -48,7 +48,7 @@ class Metronome extends Component {
     }
     stopLoop() {
         this.setState({ isPlaying: false })
-        this.props.beatPlayer.current.stopPlaying()
+        this.props.stopPlaying()
     }
 
 

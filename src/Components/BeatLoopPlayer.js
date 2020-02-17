@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Metronome from './Metronome';
 
 class BeatLoopPlayer extends Component {
 
@@ -11,7 +12,7 @@ class BeatLoopPlayer extends Component {
 
     updateBeatLoop(beatsPerMeasure, subdivisionsPerBeat, beatAccentuation, tempoStyle, beatUnitsPerMinute, beatUnit) {
         var loop = this.createBeatLoop(beatsPerMeasure, subdivisionsPerBeat, beatAccentuation)
-        this.setState({loop: loop})
+        this.setState({ loop: loop })
         if (tempoStyle === "Quarter") {
             this.props.midiPlayback.current.startPlayLoop(loop, beatUnitsPerMinute, 1 / (beatUnit * subdivisionsPerBeat));
         }
@@ -63,7 +64,17 @@ class BeatLoopPlayer extends Component {
 
     render() {
         return (
-            <div></div>
+            <Metronome
+                defaultSubdivisionsPerBeat="1"
+                defaultBeatUnit="4"
+                defaultBeatsPerMeasure="4"
+                defaultBpm="120"
+                defaultBeatAccentuation={new Map([[0, 3], [1, 1], [2, 1], [3, 1]])}
+                tempoStyle="Quarter"
+                updateBeatLoop={this.updateBeatLoop.bind(this)}
+                updateTempo={this.updateTempo.bind(this)}
+                stopPlaying={this.stopPlaying.bind(this)}>
+            </Metronome>
         )
     }
 }
