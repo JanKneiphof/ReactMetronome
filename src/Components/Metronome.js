@@ -1,10 +1,10 @@
-import { Button, Grid, Link, Typography } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 import MIDISounds from 'midi-sounds-react';
 import React, { Component } from "react";
 import BpmInput from "./BpmInput";
-import TimeSignatureInput from "./TimeSignatureInput";
+import PolyrythmInput from './PolyrythmInput';
 import SubdivisionInput from "./SubdivisionInput";
-import PolyrythmInput from './PolyrythmInput'
+import TimeSignatureInput from "./TimeSignatureInput";
 
 class Metronome extends Component {
     constructor(props) {
@@ -53,8 +53,8 @@ class Metronome extends Component {
     }
 
     createBeatLoop(beatsPerMeasure, subdivisionsPerBeat, beatAccentuation) {
-        if(!beatsPerMeasure) {
-            return [[[],[]]]
+        if (!beatsPerMeasure) {
+            return [[[], []]]
         }
 
         const firstBeat = [[200], []];
@@ -163,12 +163,6 @@ class Metronome extends Component {
                     </Grid>
                     <Grid item>
                         <MIDISounds ref={(ref) => (this.midiSounds = ref)} appElementName="root" drums={[200, 205, 210]}></MIDISounds>
-                    </Grid>
-                    <Grid item>
-                        <Typography>
-                            Check out the Code on&nbsp;
-                            <Link href="https://github.com/JanKneiphof/ReactMetronome" target="_blank" rel="noreferrer">Github</Link>
-                        </Typography>
                     </Grid>
                 </Grid>
             </div>
