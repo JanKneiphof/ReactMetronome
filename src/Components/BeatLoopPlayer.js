@@ -20,6 +20,15 @@ class BeatLoopPlayer extends Component {
         }
     }
 
+    updateTempo(beatUnitsPerMinute, tempoStyle, beatUnit, subdivisionsPerBeat) {
+        if (tempoStyle === "Quarter") {
+            this.props.midiPlayback.current.startPlayLoop(this.state.loop, beatUnitsPerMinute, 1 / (beatUnit * subdivisionsPerBeat));
+        }
+        else {
+            this.props.midiPlayback.current.startPlayLoop(this.state.loop, beatUnitsPerMinute, 1 / (4 * subdivisionsPerBeat));
+        }
+    }
+
     createBeatLoop(beatsPerMeasure, subdivisionsPerBeat, beatAccentuation) {
         if (!beatsPerMeasure) {
             return [[[], []]]
