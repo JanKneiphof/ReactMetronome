@@ -1,12 +1,14 @@
 import { Grid, Link, Typography } from '@material-ui/core';
 import React from 'react';
+import BeatLoopPlayer from './Components/BeatLoopPlayer';
 import Metronome from './Components/Metronome';
-import Navbar from './Components/Navbar';
 import MidiPlayback from './Components/MidiPlayback';
+import Navbar from './Components/Navbar';
 
 function App() {
 
-  let midiPlayback= React.createRef()
+  let midiPlayback = React.createRef()
+  let beatPlayer = React.createRef()
 
   return (
     <div className="App">
@@ -20,11 +22,16 @@ function App() {
             defaultBpm="120"
             defaultBeatAccentuation={new Map([[0, 3], [1, 1], [2, 1], [3, 1]])}
             tempoStyle="Quarter"
-            midiPlayback={midiPlayback}>
+            beatPlayer={beatPlayer}>
           </Metronome>
         </Grid>
         <Grid item>
-          <MidiPlayback ref={midiPlayback}></MidiPlayback>
+          <BeatLoopPlayer ref={beatPlayer} midiPlayback={midiPlayback} ></BeatLoopPlayer>
+        </Grid>
+        <Grid item>
+          <MidiPlayback
+            ref={midiPlayback}>
+          </MidiPlayback>
         </Grid>
         <Grid item>
           <Typography>
