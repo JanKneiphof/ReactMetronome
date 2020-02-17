@@ -1,5 +1,4 @@
 import { Button, Grid } from "@material-ui/core";
-import MIDISounds from 'midi-sounds-react';
 import React, { Component } from "react";
 import BpmInput from "./BpmInput";
 import PolyrythmInput from './PolyrythmInput';
@@ -41,6 +40,7 @@ class Metronome extends Component {
         this.setState({ isPlaying: false })
         this.props.midiPlayback.current.stopPlaying()
     }
+    
 
     async playPolyrythm(counterRythm, basicPulse) {
         let accents = this.createPolyrythmAccents(counterRythm, basicPulse)
@@ -127,9 +127,6 @@ class Metronome extends Component {
                     </Grid>
                     <Grid item>
                         <SubdivisionInput changeSubdivision={this.changeAccentuation.bind(this)} beatAccentuation={this.state.beatAccentuation} numberOfSubdivisions={this.state.beatsPerMeasure}></SubdivisionInput>
-                    </Grid>
-                    <Grid item>
-                        <MIDISounds ref={(ref) => (this.midiSounds = ref)} appElementName="root" drums={[200, 205, 210]}></MIDISounds>
                     </Grid>
                 </Grid>
             </div>
