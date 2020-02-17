@@ -54,7 +54,7 @@ class PolyrythmInput extends Component {
                                 Counterrythm
                             </InputLabel>
                             <NativeSelect id="Counterrythm-Input" onChange={(event) => this.updateCounterRythm(event)}>
-                                {this.createOptions(100)}
+                                {this.createOptions(25)}
                             </NativeSelect>
                         </FormControl>
                     </Grid>
@@ -67,7 +67,7 @@ class PolyrythmInput extends Component {
                                 Basic&nbsp;Pulse
                             </InputLabel>
                             <NativeSelect id="Basic-Pulse-Input" onChange={(event) => this.updateBasicPulse(event)}>
-                                {this.createOptions(100)}
+                                {this.createOptions(25)}
                             </NativeSelect>
                         </FormControl>
                     </Grid>
