@@ -1,20 +1,19 @@
-import MIDISounds from 'midi-sounds-react';
 import React, { Component } from 'react';
 
-class MidiPlayback extends Component {
+class BeatLoopPlayer extends Component {
 
     componentDidMount() {
-        this.midiSounds.setEchoLevel(0);
-        this.midiSounds.setMasterVolume(1.0);
+        this.props.midiPlayback.current.setEchoLevel(0);
+        this.props.midiPlayback.current.setMasterVolume(1.0);
     }
 
     updateBeatLoop(beatsPerMeasure, subdivisionsPerBeat, beatAccentuation, tempoStyle, beatUnitsPerMinute, beatUnit) {
         var loop = this.createBeatLoop(beatsPerMeasure, subdivisionsPerBeat, beatAccentuation)
         if (tempoStyle === "Quarter") {
-            this.midiSounds.startPlayLoop(loop, beatUnitsPerMinute, 1 / (beatUnit * subdivisionsPerBeat));
+            this.props.midiPlayback.current.startPlayLoop(loop, beatUnitsPerMinute, 1 / (beatUnit * subdivisionsPerBeat));
         }
         else {
-            this.midiSounds.startPlayLoop(loop, beatUnitsPerMinute, 1 / (4 * subdivisionsPerBeat));
+            this.props.midiPlayback.current.startPlayLoop(loop, beatUnitsPerMinute, 1 / (4 * subdivisionsPerBeat));
         }
     }
 
@@ -46,19 +45,14 @@ class MidiPlayback extends Component {
         return beatLoop;
     }
 
-    stopPlaying(){
-        this.midiSounds.stopPlayLoop()
+    stopPlaying() {
+        this.props.midiPlayback.current.stopPlayLoop()
     }
 
     render() {
-        return (
-            <MIDISounds
-                ref={(ref) => (this.midiSounds = ref)}
-                appElementName="root"
-                drums={[200, 205, 210]}>
-            </MIDISounds>
+        return (<div></div>
         )
     }
 }
 
-export default MidiPlayback
+export default BeatLoopPlayer
