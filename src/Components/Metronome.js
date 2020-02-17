@@ -27,7 +27,7 @@ class Metronome extends Component {
 
     playLoop() {
         this.setState({ isPlaying: true })
-        this.props.midiPlayback.current.updateBeatLoop(
+        this.props.beatPlayer.current.updateBeatLoop(
             this.state.beatsPerMeasure,
             this.state.subdivisionsPerBeat,
             this.state.beatAccentuation,
@@ -38,9 +38,9 @@ class Metronome extends Component {
     }
     stopLoop() {
         this.setState({ isPlaying: false })
-        this.props.midiPlayback.current.stopPlaying()
+        this.props.beatPlayer.current.stopPlaying()
     }
-    
+
 
     async playPolyrythm(counterRythm, basicPulse) {
         let accents = this.createPolyrythmAccents(counterRythm, basicPulse)
