@@ -125,10 +125,10 @@ class Metronome extends Component {
                     <Grid item>
                         <Grid container justify="center" spacing={2} column="row">
                             <Grid item>
-                                <Button variant="contained" onClick={this.playLoop.bind(this)}>Play sound</Button>
+                                <Button aria-label="Play Sound" variant="contained" onClick={this.playLoop.bind(this)}>Play sound</Button>
                             </Grid>
                             <Grid item>
-                                <Button variant="contained" onClick={this.stopLoop.bind(this)}>Stop sound</Button>
+                                <Button aria-label="Stop Sound" variant="contained" onClick={this.stopLoop.bind(this)}>Stop sound</Button>
                             </Grid>
                         </Grid>
                     </Grid>
