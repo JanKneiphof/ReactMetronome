@@ -4,6 +4,7 @@ import BpmInput from "./BpmInput";
 import PolyrythmInput from './PolyrythmInput';
 import SubdivisionInput from "./SubdivisionInput";
 import TimeSignatureInput from "./TimeSignatureInput";
+import { createPolyrythmAccents } from '../JsModules/BeatLoopCalculator'
 
 class Metronome extends Component {
     constructor(props) {
@@ -53,7 +54,7 @@ class Metronome extends Component {
 
 
     async playPolyrythm(counterRythm, basicPulse) {
-        let accents = this.createPolyrythmAccents(counterRythm, basicPulse)
+        let accents = createPolyrythmAccents(counterRythm, basicPulse)
         await this.setState({
             beatsPerMeasure: (counterRythm * basicPulse),
             beatUnit: (counterRythm * basicPulse),
@@ -61,23 +62,6 @@ class Metronome extends Component {
         })
         this.playLoop()
     }
-    createPolyrythmAccents(counterRythm, basicPulse) {
-        var accents = new Map()
-        accents.set(0, 3)
-        for (let tick = 1; tick < (counterRythm * basicPulse); tick++) {
-            if ((tick % counterRythm) === 0) {
-                accents.set(tick, 2)
-            }
-            else if ((tick % basicPulse) === 0) {
-                accents.set(tick, 1)
-            }
-            else {
-                accents.set(tick, 0)
-            }
-        }
-        return accents
-    }
-
 
     async changeAccentuation(index) {
         let currentAccent = this.state.beatAccentuation.get(index - 1) || 0

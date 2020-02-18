@@ -26,4 +26,21 @@ function createBeatLoop(beatsPerMeasure, subdivisionsPerBeat, beatAccentuation) 
     return beatLoop;
 }
 
-export { createBeatLoop };
+function createPolyrythmAccents(counterRythm, basicPulse) {
+    var accents = new Map()
+    accents.set(0, 3)
+    for (let tick = 1; tick < (counterRythm * basicPulse); tick++) {
+        if ((tick % counterRythm) === 0) {
+            accents.set(tick, 2)
+        }
+        else if ((tick % basicPulse) === 0) {
+            accents.set(tick, 1)
+        }
+        else {
+            accents.set(tick, 0)
+        }
+    }
+    return accents
+}
+
+export { createBeatLoop, createPolyrythmAccents };
